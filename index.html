@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,900" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
+    <title>Coming soon</title>
+</head>
+
+<body>
+    <div id="notfound">
+        <div class="notfound-bg"></div>
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1>Coming soon</h1>
+            </div>
+            <h2>We are currently working on an awesome website. Stay tuned!</h2>
+            <span class="cname">CIS</span>
+            <form class="d-flex" name="google-sheet">
+                <input class="form-control me-2 email" id="email" name="email" type="email" placeholder="Enter your email address..." aria-label="email">
+                <button id="submit" class="btn btn-outline-success submit" type="submit">Get Updates!</button>
+            </form>
+            <div id="form_alerts"></div>
+            <div class="notfound-social">
+                <a target="_blank" href="https://www.facebook.com/profile.php?id=100081014707698"><i class="fa fa-facebook"></i></a>
+                <a target="_blank" href="https://www.youtube.com/channel/UCRvu8IFW8UOeqNQQKR_vJ_w"><i class="fa fa-youtube"></i></a>
+                <a target="_blank" href="https://instagram.com/codeitsmart?igshid=YmMyMTA2M2Y="><i class="fa fa-instagram"></i></a>
+                <a target="_blank" href="mailto:codeitsmart2k20@gmail.com"><i class="fa fa-google"></i></a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyKhH3w6qHEMPB8rfpBaQ9zUmlwnC2KA-ZlTCCnR2Zusts8TwUL9hD4OcWqYrSSxHZW/exec'
+        const form = document.forms['google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => $("#form_alerts").html("<div class='alert alert-success'>Happy to hear from you. We'll notify you with the latest updates!</div>"))
+                .catch(error => $("#form_alerts").html("<div class='alert alert-danger'>Hmm...Looks like there is a problem. Please try again.</div>"))
+        })
+    </script>
+    <script>
+        btn = document.getElementById('submit');
+        title = document.getElementsByClassName('cname')[0];
+        btn.addEventListener('click', function() {
+            title.style.top = '-15%';
+        });
+    </script>
+
+</body>
+
+</html>
